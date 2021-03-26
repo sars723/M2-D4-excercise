@@ -76,6 +76,16 @@ h1{
 <p>click the button Assign to build your team</p>
     <button id="btnAssign" onclick="generateTeam();">Assign</button>
 </div>
+<div>
+
+<h6>nameList</h6>
+<ul id="listItem">
+</ul>
+</div>
+<h6>team1</h6>
+<ul id="ulTeam1">
+</ul>
+</div>
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -90,60 +100,101 @@ h1{
 
     
   <script>
-     
+     const ulNameList=document.getElementById("listItem")
+     const ulTeam1=document.getElementById("ulTeam1")
+     const inputName=document.getElementById("myInput")
+
+
     function getSelectedCheckboxValues(name) {
-    const checkboxes = document.querySelectorAll(`input[name="${name}"]:checked`);
-    let values = [];
-    checkboxes.forEach((checkbox) => {
-        values.push(checkbox.value);
-    });
- 
+      const checkboxes = document.querySelectorAll(`input[name="${name}"]:checked`);
+      let values = [];
+      
+      checkboxes.forEach((checkbox) => {
+          values.push(checkbox.value);
+      });
   
-    return values;
-}
+    
+      return values;
+    }
 
-const btn = document.querySelector('#btn');
-btn.addEventListener('click', (event) => {
-    alert("you are selected "+getSelectedCheckboxValues('team')  );
-});
+          const btn = document.querySelector('#btn');
+          btn.addEventListener('click', (event) => {
+              alert("you are selected "+getSelectedCheckboxValues('team')  );
+          });
 
 
 
 
-function getInputValue(name){
-            // Selecting the input element and get its value 
-            var inputVal = document.getElementById("myInput").value;
-            let listName=[]
-        for(let i=0;i<inputVal.length;i++)
-        {
-          listName[i]=inputVal;
+        function getInputValue(name){
+                    // Selecting the input element and get its value 
+
+                    var inputVal = document.getElementById("myInput").value;
+                    let listName=[]
+                   
+                     listName.push(inputVal)
+                  
+               /*  for(let i=0;i<inputVal.length;i++)
+                {
+                  listName[i]=inputVal;
+                } */
+                console.log(listName)
+                
+                const li=document.createElement("li")
+                li.innerText=inputVal
+                ulNameList.appendChild(li)
+               /*  inputName.innerHTML=" " */
+                  
+            return listName
         }
-          
-    return listName
-        }
 
 
-        const btnName = document.querySelector('#btnName');
-btnName.addEventListener('click', (event) => {
-    alert("you entered "+getInputValue()  );
-});
+                /* const btnName = document.querySelector('#btnName');
+                btnName.addEventListener('click', (event) => {
+                 alert("you entered "+getInputValue()  );
+                 }); */
 
 
         function generateTeam()
         {
-          
+         /*  console.log("hello") */
          let team= getSelectedCheckboxValues('team');
+       /*   console.log("team ist"+team) */
          for(let i=0;i<team.length;i++)
          {
            let listN=[]
            
-            listgetInputValue();
-            let num=Mathfloor(Math.random()*listN.length)
-          team[i].push( listN[num]);
-         }
+            /* listgetInputValue(); */
+           /*  const list=document.querySelectorAll("li") */
+            
+if(team[0]==="Team1")
+{
+  const liTeam1=document.createElement("li")
+  const liNameList=document.getElementById("listItem").getElementsByTagName("li")
+ console.log(liNameList[1].innerHTML)
+  let num=Math.floor(Math.random()*(liNameList.length))
+  console.log(Math.floor(Math.random()*liNameList.length))
+console.log(liNameList.length+"num="+num)
+for(let i=0;i<liNameList.length;i++)
+{
+  if(liNameList[num].innerHTML!="")
+  {
+
+ 
+  liTeam1.innerHTML= liNameList[num].innerHTML;
+          ulTeam1.appendChild(liTeam1)
+          liNameList[num].remove() 
+        }
+}
+  
+
+          
+
+         } 
           
         }
-        generateTeam();
+      }
+      /*   generateTeam(); */
+        
   </script>
   </body>
 </html>
